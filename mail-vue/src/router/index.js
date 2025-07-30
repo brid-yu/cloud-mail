@@ -1,69 +1,49 @@
-    import {createRouter, createWebHistory} from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 import {useUiStore} from "@/store/ui.js";
 
 const routes = [
     {
         path: '/',
         name: 'layout',
-        redirect: '/email',
+        redirect: '/inbox',
         component: () => import('@/layout/index.vue'),
         children: [
             {
-                path: '/email',
+                path: '/inbox',
                 name: 'email',
                 component: () => import('@/views/email/index.vue'),
                 meta: {
-                    title: '收件箱',
+                    title: 'inbox',
                     name: 'email',
                     menu: true
                 }
             },
             {
-                path: '/send',
-                name: 'send',
-                component: () => import('@/views/send/index.vue'),
-                meta: {
-                    title: '已发送',
-                    name: 'send',
-                    menu: true
-                }
-            },
-            {
-                path: '/draft',
-                name: 'draft',
-                component: () => import('@/views/draft/index.vue'),
-                meta: {
-                    title: '草稿箱',
-                    name: 'draft',
-                    menu: true
-                }
-            },
-            {
-                path: '/content',
+                path: '/message',
                 name: 'content',
                 component: () => import('@/views/content/index.vue'),
                 meta: {
-                    title: '邮件详情',
+                    title: 'message',
                     name: 'content',
                     menu: false
                 }
             },
             {
-                path: '/setting',
+                path: '/settings',
                 name: 'setting',
                 component: () => import('@/views/setting/index.vue'),
                 meta: {
-                    title: '个人设置',
+                    title: 'settings',
                     name: 'setting',
                     menu: true
                 }
             },
             {
-                path: '/star',
+                path: '/starred',
                 name: 'star',
                 component: () => import('@/views/star/index.vue'),
                 meta: {
-                    title: '星标邮件',
+                    title: 'starred',
                     name: 'star',
                     menu: true
                 }

@@ -8,21 +8,21 @@
         <div class="card-grid">
           <!-- Website Settings Card -->
           <div class="settings-card">
-            <div class="card-title">网站设置</div>
+            <div class="card-title">{{$t('websiteSetting')}}</div>
             <div class="card-content">
               <div class="setting-item">
-                <div><span>用户注册</span></div>
+                <div><span>{{$t('websiteReg')}}</span></div>
                 <div>
                   <el-switch @change="change" :before-change="beforeChange" :active-value="0" :inactive-value="1"
                              v-model="setting.register"/>
                 </div>
               </div>
               <div class="setting-item">
-                <div><span>注册码</span></div>
+                <div><span>{{$t('regKey')}}</span></div>
                 <div>
                   <el-select
                       @change="change"
-                      style="width: 80px;"
+                      :style="`width: ${ locale === 'en' ?  100 : 80 }px;`"
                       v-model="setting.regKey"
                       placeholder="Select"
                   >
@@ -36,7 +36,7 @@
                 </div>
               </div>
               <div class="setting-item">
-                <div><span>添加邮箱</span></div>
+                <div><span>{{$t('addAccount')}}</span></div>
                 <div>
                   <el-switch @change="change" :before-change="beforeChange" :active-value="0" :inactive-value="1"
                              v-model="setting.addEmail"/>
@@ -44,8 +44,8 @@
               </div>
               <div class="setting-item">
                 <div>
-                  <span>多号模式</span>
-                  <el-tooltip effect="dark" content="开启后账号栏出现一个用户可以添加多个邮箱">
+                  <span>{{$t('multipleEmail')}}</span>
+                  <el-tooltip effect="dark" :content="$t('multipleEmailDesc')">
                     <Icon class="warning" icon="fe:warning" width="18" height="18"/>
                   </el-tooltip>
                 </div>
@@ -56,8 +56,8 @@
               </div>
               <div class="setting-item">
                 <div>
-                  <span>物理清空数据</span>
-                  <el-tooltip effect="dark" content="该操作会物理清空所有已被删除的数据">
+                  <span>{{$t('physicallyWipeData')}}</span>
+                  <el-tooltip effect="dark" :content="$t('physicallyWipeDataDesc')">
                     <Icon class="warning" icon="fe:warning" width="18" height="18"/>
                   </el-tooltip>
                 </div>
@@ -73,10 +73,10 @@
 
           <!-- Personalization Settings Card -->
           <div class="settings-card">
-            <div class="card-title">个性化设置</div>
+            <div class="card-title">{{$t('customization')}}</div>
             <div class="card-content">
               <div class="setting-item">
-                <div class="title-item"><span>网站标题</span></div>
+                <div class="title-item"><span>{{$t('websiteTitle')}}</span></div>
                 <div class="email-title">
                   <span>{{ setting.title }}</span>
                   <el-button class="opt-button" size="small" type="primary" @click="editTitleShow = true">
@@ -85,13 +85,13 @@
                 </div>
               </div>
               <div class="setting-item">
-                <div class="title-item"><span>登录透明</span></div>
+                <div class="title-item"><span>{{$t('loginBoxOpacity')}}</span></div>
                 <div>
                   <el-input-number size="small" v-model="loginOpacity" @change="opacityChange" :precision="2" :step="0.01" :max="1" :min="0" />
                 </div>
               </div>
               <div class="setting-item personalized">
-                <div><span>登录背景</span></div>
+                <div><span>{{$t('loginBackground')}}</span></div>
                 <div>
                   <el-image
                       class="background"
@@ -101,13 +101,13 @@
                       fit="cover"
                   >
                     <template #error>
-                      <div class="error-image" @click="openCut">
+                      <div class="error-image" @click="openSetBackground">
                         <Icon icon="ph:image" width="24" height="24"/>
                       </div>
                     </template>
                   </el-image>
                   <div class="background-btn">
-                    <el-button class="opt-button" size="small" type="primary" @click="openCut">
+                    <el-button class="opt-button" size="small" type="primary" @click="openSetBackground">
                       <Icon icon="lsicon:edit-outline" width="16" height="16"/>
                     </el-button>
                     <el-button class="opt-button" size="small" type="primary" @click="delBackground">
@@ -121,10 +121,10 @@
 
           <!-- Email Sending Settings Card -->
           <div class="settings-card">
-            <div class="card-title">邮件设置</div>
+            <div class="card-title">{{$t('emailSetting')}}</div>
             <div class="card-content">
               <div class="setting-item">
-                <div><span>邮件接收</span></div>
+                <div><span>{{$t('receiveEmails')}}</span></div>
                 <div>
                   <el-switch @change="change" :before-change="beforeChange" :active-value="0" :inactive-value="1"
                              v-model="setting.receive"/>
@@ -132,15 +132,15 @@
               </div>
               <div class="setting-item">
                 <div>
-                  <span>轮询刷新</span>
-                  <el-tooltip effect="dark" content="轮询请求服务器获取最新邮件">
+                  <span>{{$t('autoRefresh')}}</span>
+                  <el-tooltip effect="dark" :content="$t('autoRefreshDesc')">
                     <Icon class="warning" icon="fe:warning" width="18" height="18"/>
                   </el-tooltip>
                 </div>
                 <div>
                   <el-select
                       @change="change"
-                      style="width: 80px;"
+                      :style="`width: ${ locale === 'en' ? 100 : 80 }px;`"
                       v-model="setting.autoRefreshTime"
                       placeholder="Select"
                   >
@@ -154,14 +154,14 @@
                 </div>
               </div>
               <div class="setting-item">
-                <div><span>邮件发送</span></div>
+                <div><span>{{$t('sendEmail')}}</span></div>
                 <div>
                   <el-switch @change="change" :before-change="beforeChange" :active-value="0" :inactive-value="1"
                              v-model="setting.send"/>
                 </div>
               </div>
               <div class="setting-item">
-                <div><span>添加 Resend Token</span></div>
+                <div><span>{{$t('resendToken')}}</span></div>
                 <div>
                   <el-button class="opt-button" style="margin-top: 0" @click="openResendList" size="small" type="primary">
                     <Icon icon="ic:round-list" width="18" height="18"/>
@@ -176,12 +176,12 @@
 
           <!-- R2 Object Storage Card -->
           <div class="settings-card">
-            <div class="card-title">R2对象存储</div>
+            <div class="card-title">{{$t('R2OS')}}</div>
             <div class="card-content">
               <div class="setting-item">
-                <div><span>访问域名</span></div>
+                <div><span>{{$t('osDomain')}}</span></div>
                 <div class="r2domain">
-                  <span>{{ setting.r2Domain || '空' }}</span>
+                  <span>{{ setting.r2Domain || '' }}</span>
                   <el-button class="opt-button" size="small" type="primary" @click="r2DomainShow = true">
                     <Icon icon="lsicon:edit-outline" width="16" height="16"/>
                   </el-button>
@@ -191,30 +191,30 @@
           </div>
 
           <div class="settings-card">
-            <div class="card-title">邮件推送</div>
+            <div class="card-title">{{$t('emailPush')}}</div>
             <div class="card-content">
               <div class="setting-item">
-                <div><span>Telegram 机器人</span></div>
+                <div><span>{{$t('tgBot')}}</span></div>
                 <div class="forward">
-                  <span>{{ setting.tgBotStatus === 0 ? '已开启' : '已关闭' }}</span>
+                  <span>{{ setting.tgBotStatus === 0 ? $t('enabled') : $t('disabled') }}</span>
                   <el-button class="opt-button" size="small" type="primary" @click="openTgSetting">
                     <Icon icon="fluent:settings-48-regular" width="18" height="18"/>
                   </el-button>
                 </div>
               </div>
               <div class="setting-item">
-                <div><span>第三方邮箱</span></div>
+                <div><span>{{$t('otherEmail')}}</span></div>
                 <div class="forward">
-                  <span>{{ setting.forwardStatus === 0 ? '已开启' : '已关闭' }}</span>
+                  <span>{{ setting.forwardStatus === 0 ? $t('enabled') : $t('disabled') }}</span>
                   <el-button class="opt-button" size="small" type="primary" @click="openThirdEmailSetting">
                     <Icon icon="fluent:settings-48-regular" width="18" height="18"/>
                   </el-button>
                 </div>
               </div>
               <div class="setting-item">
-                <div><span>转发规则</span></div>
+                <div><span>{{$t('forwardingRules')}}</span></div>
                 <div class="forward">
-                  <span>{{ setting.ruleType === 0 ? '全部转发' : '规则转发' }}</span>
+                  <span>{{ setting.ruleType === 0 ? $t('forwardAll') : $t('rules') }}</span>
                   <el-button class="opt-button" size="small" type="primary" @click="openForwardRules">
                     <Icon icon="fluent:settings-48-regular" width="18" height="18"/>
                   </el-button>
@@ -225,17 +225,17 @@
 
           <!-- Turnstile Verification Card -->
           <div class="settings-card">
-            <div class="card-title">Turnstile 人机验证</div>
+            <div class="card-title">{{$t('turnstileSetting')}}</div>
             <div class="card-content">
               <div class="setting-item">
-                <div><span>注册验证</span></div>
+                <div><span>{{$t('signUpVerification')}}</span></div>
                 <div>
                   <el-switch @change="change" :before-change="beforeChange" :active-value="0" :inactive-value="1"
                              v-model="setting.registerVerify"/>
                 </div>
               </div>
               <div class="setting-item">
-                <div><span>添加验证</span></div>
+                <div><span>{{$t('addEmailVerification')}}</span></div>
                 <div>
                   <el-switch @change="change" :before-change="beforeChange" :active-value="0" :inactive-value="1"
                              v-model="setting.addEmailVerify"/>
@@ -263,24 +263,33 @@
           </div>
 
           <div class="settings-card about">
-            <div class="card-title">关于</div>
+            <div class="card-title">{{$t('about')}}</div>
             <div class="card-content">
               <div class="concerning-item">
-                <span>版本:</span>
-                <span>v1.4.0</span>
+                <span>{{$t('version')}} :</span>
+                <span>v1.5.0</span>
               </div>
               <div class="concerning-item">
-                <span>交流:</span>
+                <span>{{$t('community')}} : </span>
+                <el-button @click="jump('https://github.com/eoao/cloud-mail')">
+                  Github
+                  <template #icon>
+                    <Icon icon="codicon:github-inverted" width="22" height="22" />
+                  </template>
+                </el-button>
                 <el-button @click="jump('https://t.me/cloud_mail_tg')">
-                  telegram
+                  Telegram
                   <template #icon>
                     <Icon icon="logos:telegram" width="30" height="30"/>
                   </template>
                 </el-button>
-                <el-button @click="jump('https://github.com/eoao/cloud-mail')">
-                  github
+              </div>
+              <div class="concerning-item">
+                <span>{{$t('support')}} : </span>
+                <el-button @click="jump('https://support.skymail.ink')" >
+                  {{t('supportDesc')}}
                   <template #icon>
-                    <Icon icon="codicon:github-inverted" width="22" height="22" />
+                    <Icon color="#79D6B5" icon="simple-icons:buymeacoffee" width="20" height="20" />
                   </template>
                 </el-button>
               </div>
@@ -290,13 +299,13 @@
       </div>
 
       <!-- Dialogs remain the same -->
-      <el-dialog v-model="editTitleShow" title="修改标题" width="340" @closed="editTitle = ''">
+      <el-dialog v-model="editTitleShow" :title="$t('changeTitle')" width="340" >
         <form>
-          <el-input type="text" placeholder="网站标题" v-model="editTitle"/>
-          <el-button type="primary" :loading="settingLoading" @click="saveTitle">保存</el-button>
+          <el-input type="text" :placeholder="$t('websiteTitle')" v-model="editTitle"/>
+          <el-button type="primary" :loading="settingLoading" @click="saveTitle">{{$t('save')}}</el-button>
         </form>
       </el-dialog>
-      <el-dialog v-model="resendTokenFormShow" title="添加 Resend Token" width="340" @closed="cleanResendTokenForm">
+      <el-dialog v-model="resendTokenFormShow" :title="$t('resendToken')" width="340" @closed="cleanResendTokenForm">
         <form>
           <el-select style="margin-bottom: 15px" v-model="resendTokenForm.domain" placeholder="Select">
             <el-option
@@ -306,68 +315,80 @@
                 :value="item"
             />
           </el-select>
-          <el-input type="text" placeholder="输入内容添加，不填则删除" v-model="resendTokenForm.token"/>
-          <el-button type="primary" :loading="settingLoading" @click="saveResendToken">保存</el-button>
+          <el-input type="text" :placeholder="$t('addResendTokenDesc')" v-model="resendTokenForm.token"/>
+          <el-button type="primary" :loading="settingLoading" @click="saveResendToken">{{$t('save')}}</el-button>
         </form>
       </el-dialog>
-      <el-dialog v-model="r2DomainShow" title="添加R2访问域名" width="340" @closed="r2DomainInput = ''">
+      <el-dialog v-model="r2DomainShow" :title="$t('addOsDomain')" width="340" @closed="r2DomainInput = setting.r2Domain">
         <form>
-          <el-input type="text" placeholder="R2访问域名" v-model="r2DomainInput"/>
-          <el-button type="primary" :loading="settingLoading" @click="saveR2domain">保存</el-button>
+          <el-input type="text" :placeholder="$t('domainDesc')" v-model="r2DomainInput"/>
+          <el-button type="primary" :loading="settingLoading" @click="saveR2domain">{{$t('save')}}</el-button>
         </form>
       </el-dialog>
-      <el-dialog v-model="turnstileShow" title="添加 Turnstile 密钥" width="340"
+      <el-dialog v-model="turnstileShow" :title="$t('addTurnstileSecret')" width="340"
                  @closed="turnstileForm.secretKey = '';turnstileForm.siteKey = ''">
         <form>
-          <el-input type="text" placeholder="siteKey" v-model="turnstileForm.siteKey"/>
-          <el-input type="text" style="margin-top: 15px" placeholder="secretKey" v-model="turnstileForm.secretKey"/>
-          <el-button type="primary" :loading="settingLoading" @click="saveTurnstileKey">保存</el-button>
+          <el-input type="text" placeholder="Site Key" v-model="turnstileForm.siteKey"/>
+          <el-input type="text" style="margin-top: 15px" placeholder="Secret Key" v-model="turnstileForm.secretKey"/>
+          <el-button type="primary" :loading="settingLoading" @click="saveTurnstileKey">{{$t('save')}}</el-button>
         </form>
       </el-dialog>
       <el-dialog
-          v-model="cutShow"
-          title="背景截图"
+          v-model="showSetBackground"
           class="cut-dialog"
+          @closed="closedSetBackground"
       >
-        <div class="cropper">
-          <vueCropper
-              ref="cropper"
-              :img="cutImage"
-              :fixedNumber="[16,9]"
-              outputType="jpeg"
-              :fixed="true"
-              :centerBox="true"
-              :full="true"
-              :autoCrop="true"
-              :outputSize="0.92"
-          ></vueCropper>
-        </div>
+        <template #header>
+          <span style="font-size: 18px">
+            {{$t('backgroundTitle')}}
+            <el-tooltip>
+              <template #content>
+                <span>{{$t('backgroundWarning')}}</span>
+              </template>
+              <Icon class="title-icon  warning" icon="fe:warning" width="18" height="18"/>
+            </el-tooltip>
+          </span>
+        </template>
+        <el-input :placeholder="$t('backgroundUrlDesc')" v-model="backgroundUrl" v-if="!localUpShow" class="background-url" />
+        <el-image
+            v-if="localUpShow"
+            :preview-src-list="[backgroundImage]"
+            show-progress
+            class="cropper"
+            fit="cover"
+            :src="backgroundImage"
+        ></el-image>
         <div class="cut-button">
-          <el-button type="primary" :loading="settingLoading" @click="saveBackground">保存</el-button>
+          <el-button type="primary" link @click="openCut" v-if="!localUpShow">
+            {{$t('localUpload')}}
+          </el-button>
+          <el-button type="primary" link @click="localUpShow = false" v-if="localUpShow">
+            {{$t('imageLink')}}
+          </el-button>
+          <el-button type="primary" :loading="settingLoading" @click="saveBackground">{{$t('save')}}</el-button>
         </div>
       </el-dialog>
       <el-dialog
           v-model="tgSettingShow"
-          title="Telegram 机器人"
           class="forward-dialog"
       >
         <template #header>
           <div class="forward-head">
-            <span class="forward-set-title">Telegram 机器人</span>
-            <el-tooltip effect="dark" content="可以将接收的邮件转发到Tg机器人">
+            <span class="forward-set-title">{{$t('tgBot')}}</span>
+            <el-tooltip effect="dark" :content="$t('tgBotDesc')">
               <Icon class="warning" icon="fe:warning" width="18" height="18"/>
             </el-tooltip>
           </div>
         </template>
         <div class="forward-set-body">
-          <el-input placeholder="机器人 token" v-model="tgBotToken"></el-input>
-          <el-input-tag tag-type="warning" placeholder="用户 chat_id 多个用,分开 12345,54321" v-model="tgChatId" @add-tag="addChatTag" ></el-input-tag>
+          <el-input :placeholder="$t('tgBotToken')" v-model="tgBotToken"></el-input>
+          <el-input-tag tag-type="warning" :placeholder="$t('toBotTokenDesc')" v-model="tgChatId" @add-tag="addChatTag" ></el-input-tag>
         </div>
         <template #footer>
           <div class="dialog-footer">
-            <el-switch v-model="tgBotStatus" :active-value="0" :inactive-value="1" active-text="开启" inactive-text="关闭" />
+            <el-switch v-model="tgBotStatus" :active-value="0" :inactive-value="1" :active-text="$t('enable')" :inactive-text="$t('disable')" />
             <el-button :loading="settingLoading" type="primary" @click="tgBotSave">
-              保存
+              {{$t('save')}}
             </el-button>
           </div>
         </template>
@@ -378,20 +399,20 @@
       >
         <template #header>
           <div class="forward-head">
-            <span class="forward-set-title">第三方邮箱</span>
-            <el-tooltip effect="dark" content="可以将邮件转到其他服务商邮箱，需要在cloudflare验证邮箱">
+            <span class="forward-set-title">{{$t('otherEmail')}}</span>
+            <el-tooltip effect="dark" :content="$t('otherEmailDesc')">
               <Icon class="warning" icon="fe:warning" width="18" height="18"/>
             </el-tooltip>
           </div>
         </template>
         <div class="forward-set-body">
-          <el-input-tag tag-type="warning" placeholder="多个邮箱用, 分开 example1.com,example2.com" v-model="forwardEmail" @add-tag="emailAddTag"></el-input-tag>
+          <el-input-tag tag-type="warning" :placeholder="$t('otherEmailInputDesc')" v-model="forwardEmail" @add-tag="emailAddTag"></el-input-tag>
         </div>
         <template #footer>
           <div class="dialog-footer">
-            <el-switch v-model="forwardStatus" :active-value="0" :inactive-value="1" active-text="开启" inactive-text="关闭" />
+            <el-switch v-model="forwardStatus" :active-value="0" :inactive-value="1" :active-text="$t('enable')" :inactive-text="$t('disable')" />
             <el-button :loading="settingLoading" type="primary" @click="forwardEmailSave">
-              保存
+              {{$t('save')}}
             </el-button>
           </div>
         </template>
@@ -402,31 +423,31 @@
       >
         <template #header>
             <div class="forward-head">
-              <span class="forward-set-title">转发规则</span>
-              <el-tooltip effect="dark" content="规则转发只会转发设置邮箱所接收的邮件">
+              <span class="forward-set-title">{{$t('forwardingRules')}}</span>
+              <el-tooltip effect="dark" :content="$t('forwardingRulesDesc')">
                 <Icon class="warning" icon="fe:warning" width="18" height="18"/>
               </el-tooltip>
             </div>
         </template>
         <div class="forward-set-body">
-          <el-input-tag placeholder="多个邮箱用, 分开 example1.com,example2.com" tag-type="success" v-model="ruleEmail" @add-tag="ruleEmailAddTag" />
+          <el-input-tag :placeholder="$t('ruleEmailsInputDesc')" tag-type="success" v-model="ruleEmail" @add-tag="ruleEmailAddTag" />
         </div>
         <template #footer>
           <div class="dialog-footer">
             <el-radio-group v-model="ruleType">
-              <el-radio :value="0" >全部转发</el-radio>
-              <el-radio :value="1" >规则转发</el-radio>
+              <el-radio :value="0" >{{$t('forwardAll')}}</el-radio>
+              <el-radio :value="1" >{{$t('rules')}}</el-radio>
             </el-radio-group>
             <el-button :loading="settingLoading" type="primary" @click="ruleEmailSave">
-              保存
+              {{$t('save')}}
             </el-button>
           </div>
         </template>
       </el-dialog>
-      <el-dialog class="resend-table" v-model="showResendList" title="Token 列表">
+      <el-dialog class="resend-table" v-model="showResendList" :title="$t('resendTokenList')">
         <el-table :data="resendList" >
-          <el-table-column :min-width="emailColumnWidth" property="key" label="域名" :show-overflow-tooltip="true" />
-          <el-table-column :width="tokenColumnWidth" property="value" label="token" fixed="right" :show-overflow-tooltip="true" />
+          <el-table-column :min-width="emailColumnWidth" property="key" :label="$t('domain')" :show-overflow-tooltip="true" />
+          <el-table-column :width="tokenColumnWidth" property="value" label="Token" fixed="right" :show-overflow-tooltip="true" />
         </el-table>
       </el-dialog>
     </el-scrollbar>
@@ -446,15 +467,17 @@ import {debounce} from 'lodash-es'
 import {isEmail} from "@/utils/verify-utils.js";
 import loading from "@/components/loading/index.vue";
 import {getTextWidth} from "@/utils/text.js";
+import { fileToBase64 } from "@/utils/file-utils.js"
+import { useI18n } from 'vue-i18n';
 
 defineOptions({
   name: 'sys-setting'
 })
 
+const { t, locale } = useI18n();
 const firstLoading = ref(true)
-const cropper = ref()
-const cutImage = ref('')
-const cutShow = ref(false)
+const backgroundImage = ref('')
+const localUpShow = ref(false)
 const accountStore = useAccountStore();
 const userStore = useUserStore();
 const editTitleShow = ref(false)
@@ -471,6 +494,9 @@ const editTitle = ref('')
 const settingLoading = ref(false)
 const r2DomainInput = ref('')
 const loginOpacity = ref(0)
+const backgroundUrl = ref('')
+let backgroundFile = {}
+const showSetBackground = ref(false)
 let backup = '{}'
 const resendTokenForm = reactive({
   domain: '',
@@ -482,13 +508,13 @@ const turnstileForm = reactive({
 })
 
 const regKeyOptions = [
-  {label: '开启', value: 0},
-  {label: '关闭', value: 1},
-  {label: '可选', value: 2},
+  {label: t('enable'), value: 0},
+  {label: t('disable'), value: 1},
+  {label: t('optional'), value: 2},
 ]
 
 const options = [
-  {label: '关闭', value: 0},
+  {label: t('disable'), value: 0},
   {label: '3s', value: 3},
   {label: '5s', value: 5},
   {label: '7s', value: 7},
@@ -504,9 +530,20 @@ const forwardEmail = ref([])
 const forwardStatus = ref(0)
 const emailColumnWidth = ref(0)
 const tokenColumnWidth = ref(0)
-
 const ruleType = ref(0)
 const ruleEmail = ref([])
+
+
+settingQuery().then(settingData => {
+  setting.value = settingData
+  resendTokenForm.domain = setting.value.domainList[0]
+  loginOpacity.value = setting.value.loginOpacity
+  firstLoading.value = false
+  backgroundUrl.value = setting.value.background?.startsWith('http') ? setting.value.background : ''
+  editTitle.value = setting.value.title
+  r2DomainInput.value = setting.value.r2Domain
+})
+
 const resendList = computed(() => {
 
   let list = Object.keys(setting.value.resendTokens).map(key => {
@@ -518,29 +555,31 @@ const resendList = computed(() => {
 
   if (list.length > 0) {
 
-    const key = list.reduce((a, b) =>
-        a.key.length > b.key.length ? a : b
-    ).key;
+    const key = list.reduce((a, b) => compareByLengthAndUpperCase(a, b, 'key')).key;
+    emailColumnWidth.value = getTextWidth(key) + 30;
 
-    emailColumnWidth.value = getTextWidth(key) + 30
-
-    const value = list.reduce((a, b) =>
-        a.value.length > b.value.length ? a : b
-    ).value;
-
-    tokenColumnWidth.value = getTextWidth(value) + 30
+    const value = list.reduce((a, b) => compareByLengthAndUpperCase(a, b, 'value')).value;
+    tokenColumnWidth.value = getTextWidth(value) + 30;
 
   }
 
   return list;
 });
 
-settingQuery().then(settingData => {
-  setting.value = settingData
-  resendTokenForm.domain = setting.value.domainList[0]
-  loginOpacity.value = setting.value.loginOpacity
-  firstLoading.value = false
-})
+const compareByLengthAndUpperCase = (a, b, key) => {
+  const getUpperCaseCount = (str) => (str.match(/[A-Z]/g) || []).length;
+  if (a[key].length === b[key].length) {
+    return getUpperCaseCount(a[key]) > getUpperCaseCount(b[key]) ? a : b;
+  }
+  return a[key].length > b[key].length ? a : b;
+};
+
+
+function closedSetBackground() {
+  backgroundImage.value = ''
+  localUpShow.value = false
+  backgroundUrl.value = setting.value.background?.startsWith('http') ? setting.value.background : ''
+}
 
 function openTgSetting() {
   tgBotStatus.value = setting.value.tgBotStatus
@@ -658,18 +697,18 @@ const opacityChange = debounce(doOpacityChange, 1000, {
 })
 
 function physicsDeleteAllData() {
-  ElMessageBox.prompt('此操作不可逆转, 输入 <b style="font-weight: bold">确认删除</b> 继续操作', {
-    confirmButtonText: '确定',
-    cancelButtonText: '取消',
+  ElMessageBox.prompt(t('clearAllDelConfirm'), {
+    confirmButtonText: t('confirm'),
+    cancelButtonText: t('cancel'),
     dangerouslyUseHTMLString: true,
-    title: '警告',
+    title: t('warning'),
     type: 'warning',
-    inputPattern: /^确认删除$/,
-    inputErrorMessage: '请输入确认删除',
+    inputPattern: new RegExp(`^${t('delInputPattern')}$`),
+    inputErrorMessage: t('inputErrorMessage'),
   }).then(() => {
     physicsDeleteAll().then(() => {
       ElMessage({
-        message: "删除成功",
+        message: t('delSuccessMsg'),
         type: "success",
         plain: true
       })
@@ -678,11 +717,12 @@ function physicsDeleteAllData() {
 }
 
 function delBackground() {
-  ElMessageBox.confirm('确定要删除这个背景吗?', {
-    confirmButtonText: '确定',
-    cancelButtonText: '取消',
+  ElMessageBox.confirm(t('delBackgroundConfirm'), {
+    confirmButtonText: t('confirm'),
+    cancelButtonText: t('cancel'),
     type: 'warning'
   }).then(() => {
+    backgroundUrl.value = ''
     setting.value.background = null
     editSetting({background: null})
   })
@@ -695,21 +735,43 @@ function saveTurnstileKey() {
   editSetting(settingForm)
 }
 
-function saveBackground() {
-  settingLoading.value = true
-  cropper.value.getCropData(data => {
-    setBackground(data).then(key => {
-      setting.value.background = key
-      cutShow.value = false
+async function saveBackground() {
+
+  let image = ''
+
+  if (localUpShow.value) {
+    image =  await fileToBase64(backgroundFile,true);
+  } else {
+    if (!backgroundUrl.value.startsWith('http')) {
       ElMessage({
-        message: "设置成功",
-        type: "success",
+        message: '图片地址不正确',
+        type: "error",
         plain: true
       })
-    }).finally(() => {
-      settingLoading.value = false
+      return
+    }
+    image = backgroundUrl.value
+  }
+  settingLoading.value = true
+
+  setBackground(image).then(key => {
+    setting.value.background = key
+    showSetBackground.value = false
+    ElMessage({
+      message: t('changSuccessMsg'),
+      type: "success",
+      plain: true
     })
+    localUpShow.value = false
+    backgroundImage.value = ''
+  }).finally(() => {
+    settingLoading.value = false
   })
+
+}
+
+function openSetBackground() {
+  showSetBackground.value = true
 }
 
 function openCut() {
@@ -718,22 +780,15 @@ function openCut() {
   doc.setAttribute('accept', 'image/*')
   doc.click()
   doc.onchange = async (e) => {
-    cutImage.value = URL.createObjectURL(e.target.files[0])
-    cutShow.value = true
+    backgroundFile = e.target.files[0]
+    backgroundImage.value = URL.createObjectURL(e.target.files[0])
+    localUpShow.value = true
   }
 }
 
 function saveR2domain() {
   const settingForm = {r2Domain: r2DomainInput.value}
-	if (settingForm.r2Domain && !settingForm.r2Domain.startsWith('http')) {
-		ElMessage({
-			message: "域名必须以http或https开头",
-			type: "error",
-			plain: true
-		})
-		return;
-	}
-  editSetting(settingForm)
+  editSetting(settingForm, true)
 }
 
 function openResendForm() {
@@ -800,7 +855,7 @@ function editSetting(settingForm, refreshStatus = true) {
   settingSet(settingForm).then(() => {
     settingLoading.value = false
     ElMessage({
-      message: "设置成功",
+      message: t('changSuccessMsg'),
       type: "success",
       plain: true
     })
@@ -818,7 +873,7 @@ function editSetting(settingForm, refreshStatus = true) {
     thirdEmailShow.value = false
     forwardRulesShow.value = false
   }).catch((e) => {
-    console.log(e)
+    console.error(e)
     loginOpacity.value = setting.value.loginOpacity
     setting.value = {...setting.value, ...JSON.parse(backup)}
   }).finally(() => {
@@ -886,6 +941,8 @@ function editSetting(settingForm, refreshStatus = true) {
   flex-direction: column;
 }
 
+
+
 .settings-card {
   background-color: #fff;
   border-radius: 8px;
@@ -933,6 +990,14 @@ function editSetting(settingForm, refreshStatus = true) {
   }
 }
 
+.title-icon.warning {
+  position: relative;
+  top: 2px;
+  color: gray;
+  cursor: pointer;
+  margin-left: 2px;
+}
+
 .warning {
   margin-left: 5px;
   color: gray;
@@ -952,6 +1017,11 @@ function editSetting(settingForm, refreshStatus = true) {
   display: flex;
   justify-content: space-between;
 }
+
+.background-url {
+  width: min(calc(100vw - 70px), 500px);
+}
+
 
 :deep(.el-dialog) {
   width: 400px !important;
@@ -1021,8 +1091,7 @@ function editSetting(settingForm, refreshStatus = true) {
   padding-top: 15px;
   width: 100%;
   display: flex;
-  justify-content: end;
-
+  justify-content: space-between;
   .el-button {
     width: fit-content;
   }
